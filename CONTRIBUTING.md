@@ -55,7 +55,47 @@ Feature requests are welcome! Please:
 
 ## Development Setup
 
-[Add specific setup instructions for your project here]
+This project uses AGLint for validating filter list syntax.
+
+### Prerequisites
+
+- Node.js 22 or higher
+- npm (comes with Node.js)
+
+### Setup
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/mobilemind/moat-lms-blocker.git
+   cd moat-lms-blocker
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Linting Filter Lists
+
+Before submitting changes to filter files, run the linter:
+
+```bash
+npm run lint
+```
+
+To automatically fix issues (when possible):
+
+```bash
+npm run lint:fix
+```
+
+The linter checks all `.txt` files in the `filters/` directory for:
+- Valid uBlock Origin syntax
+- Proper comment formatting
+- Correct rule structure
+- Common syntax errors
+
+All filter files must pass linting before being merged.
 
 ## Code of Conduct
 

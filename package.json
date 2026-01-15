@@ -1,0 +1,31 @@
+{
+  "name": "moat-lms-blocker",
+  "version": "1.0.0",
+  "description": "Filter lists for uBlock Origin that block communications between eLearning content and Learning Management Systems (LMS) or Learning Record Stores (LRS).",
+  "scripts": {
+    "lint": "aglint filters/*.txt",
+    "lint:fix": "aglint --fix filters/*.txt",
+    "test": "npm run lint"
+  },
+  "keywords": [
+    "ublock",
+    "ublock-origin",
+    "adblock",
+    "filter-list",
+    "scorm",
+    "xapi",
+    "cmi5",
+    "aicc",
+    "lms",
+    "elearning"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@adguard/aglint": "^3.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mobilemind/moat-lms-blocker.git"
+  }
+}

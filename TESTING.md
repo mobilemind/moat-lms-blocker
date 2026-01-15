@@ -2,6 +2,29 @@
 
 This guide helps you verify the filter lists are working and use them to debug your eLearning content.
 
+## Filter List Validation
+
+Before testing filter lists in a browser, validate their syntax using AGLint:
+
+```bash
+# Install dependencies (first time only)
+npm install
+
+# Lint all filter files
+npm run lint
+
+# Automatically fix issues (when possible)
+npm run lint:fix
+```
+
+AGLint validates:
+- uBlock Origin syntax compatibility
+- Proper comment and metadata formatting
+- Rule structure correctness
+- Common syntax errors
+
+All filter files must pass linting. The linter runs automatically on pull requests via GitHub Actions.
+
 ## Quick Verification
 
 1. Install [uBlock Origin](https://ublockorigin.com/) in Firefox or Edge
