@@ -1,0 +1,25 @@
+! Title: Moat cmi5 Blocker
+! Description: Blocks cmi5 launch parameters, course manifests, and client libraries
+! Homepage: https://github.com/mobilemind/moat-lms-blocker
+! License: MIT
+! Last modified: 2026-01-15
+! Expires: 14 days
+
+! cmi5 Launch Parameters
+/[&?]fetch=/$xhr,document
+/[&?]registration=/$xhr,document
+/[&?]activityId=/$xhr,document
+
+! cmi5 Course Structure Manifests
+/cmi5\.xml$document,xhr
+/tincan\.xml$document,xhr
+
+! cmi5 Client Libraries
+/cmi5\.js$script,1p
+/cmi5Wrapper\.js$script,1p
+/cmi5Controller\.js$script,1p
+/cmi5Launcher\.js$script,1p
+
+! cmi5 Authentication and API Endpoints
+||*/auth-token$xhr,document
+||*/cmi5/*$xhr,document,script

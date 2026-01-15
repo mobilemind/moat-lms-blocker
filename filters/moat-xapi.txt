@@ -1,0 +1,33 @@
+! Title: Moat xAPI Blocker
+! Description: Blocks Experience API (Tin Can) statements, agents, activities, and state endpoints
+! Homepage: https://github.com/mobilemind/moat-lms-blocker
+! License: MIT
+! Last modified: 2026-01-15
+! Expires: 14 days
+
+! xAPI Endpoint Patterns
+||*/xAPI/statements$xhr,document
+||*/xAPI/statements?*$xhr,document
+||*/xAPI/agents$xhr,document
+||*/xAPI/agents?*$xhr,document
+||*/xAPI/agents/profile$xhr,document
+||*/xAPI/agents/profile?*$xhr,document
+||*/xAPI/activities$xhr,document
+||*/xAPI/activities?*$xhr,document
+||*/xAPI/activities/profile$xhr,document
+||*/xAPI/activities/profile?*$xhr,document
+||*/xAPI/activities/state$xhr,document
+||*/xAPI/activities/state?*$xhr,document
+||*/xAPI/about$xhr,document
+
+! xAPI Query Parameters
+/[&?]statementid=/$xhr,document
+/[&?]agent=/$xhr,document
+
+! Common LRS Paths
+||*/tcapi/*$xhr,document
+||*/lrs/*$xhr,document
+
+! TinCanJS Libraries
+/tincan\.js$script,1p
+/tincan-min\.js$script,1p

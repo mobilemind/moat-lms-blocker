@@ -1,0 +1,27 @@
+! Title: Moat SCORM 1.2 Blocker
+! Description: Blocks SCORM 1.2 runtime library scripts and LMS API communications
+! Homepage: https://github.com/mobilemind/moat-lms-blocker
+! License: MIT
+! Last modified: 2026-01-15
+! Expires: 14 days
+
+! SCORM 1.2 Runtime Library Scripts
+/lms\/SCORMFunctions\.js$script,1p
+/SCORM_utilities\.js$script,1p
+/lms\/API\.js$script,1p
+/lms\/APIConstants\.js$script,1p
+/browsersniff\.js$script,1p
+/lms\/Configuration\.js$script,1p
+/lms\/LMSAPI\.js$script,1p
+/lms\/NONEFunctions\.js$script,1p
+/scormdriver\.js$script,1p
+/lms\/UtilityFunctions\.js$script,1p
+
+! Common SCORM Wrapper Scripts
+/APIWrapper\.js$script,1p
+/scofunctions\.js$script,1p
+/scorm_support\.js$script,1p
+
+! LMS Communication Documents
+/lms\/blank\.html$document,1p
+/goodbye\.html$document,1p
