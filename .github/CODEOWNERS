@@ -1,0 +1,9 @@
+# Code Owners - Automatically request review from these users/teams
+
+# Default owner for everything in the repo
+* @mobilemind
+
+# Specific paths (examples - adjust as needed)
+# /filters/ @mobilemind
+# *. md @mobilemind
+# . github/ @mobilemind
