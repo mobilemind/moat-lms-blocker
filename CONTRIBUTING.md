@@ -1,99 +1,68 @@
-# Contributing to Moat LMS Blocker
+# Contributing to moat-lms-blocker
 
-Thank you for your interest in improving these filter lists. Contributions
-help make eLearning debugging easier for everyone.
+Thank you for your interest in contributing!  We welcome contributions from everyone.
 
-## Reporting Issues
+## How to Contribute
 
-### Requests aren't being blocked
+### Reporting Bugs
 
-If LMS/LRS communication is getting through when it should be blocked:
+If you find a bug, please create an issue with:
+- A clear, descriptive title
+- Steps to reproduce the problem
+- Expected vs. actual behavior
+- Your environment (OS, browser, versions)
+- Screenshots if applicable
 
-1. Open an issue with:
-   - The protocol (SCORM 1.2, SCORM 2004, xAPI, cmi5, AICC)
-   - The URL pattern that should be blocked (from browser Network tab)
-   - The authoring tool or LMS if known
+### Suggesting Features
 
-2. Example issue title: "xAPI statements to /TinCan/ not blocked"
+Feature requests are welcome! Please: 
+- Check if the feature has already been requested
+- Clearly describe the feature and its use case
+- Explain why it would be beneficial
 
-### False positives (legitimate content blocked)
+### Pull Requests
 
-If the filter lists are blocking content that should load:
+1. **Fork the repository** and create your branch from `main`
+   ```bash
+   git checkout -b feature/my-new-feature
+   ```
 
-1. Open an issue with:
-   - Which filter list is causing the problem
-   - The URL being incorrectly blocked
-   - What the resource is (e.g., "course navigation script")
+2. **Make your changes**
+   - Follow the existing code style
+   - Add tests if applicable
+   - Update documentation as needed
 
-2. Example issue title: "moat-scorm12.txt blocks unrelated API.js file"
+3. **Commit your changes** with clear, descriptive messages
+   ```bash
+   git commit -m "Add feature:  description of what you added"
+   ```
 
-## Contributing Filter Rules
+4. **Push to your fork**
+   ```bash
+   git push origin feature/my-new-feature
+   ```
 
-### Before submitting
+5. **Open a Pull Request**
+   - Use the PR template
+   - Link any related issues
+   - Describe what changed and why
 
-1. Test your rule with uBlock Origin to verify it works
-2. Ensure the rule doesn't cause false positives on common websites
-3. Use the most specific pattern possible to avoid over-blocking
+### Code Review Process
 
-### Filter rule format
+- Maintainers will review your PR as soon as possible
+- Address any requested changes
+- Once approved, a maintainer will merge your PR
 
-Follow uBlock Origin's [static filter syntax](https://github.com/gorhill/uBlock/wiki/Static-filter-syntax).
+## Development Setup
 
-**For scripts (first-party only):**
-```
-/pattern\.js$script,1p
-```
-
-**For API endpoints:**
-```
-||*/endpoint/$xhr,document
-```
-
-**For query parameters:**
-```
-/[&?]parameter=/$xhr,document
-```
-
-### Submitting a Pull Request
-
-1. Fork the repository
-2. Edit the appropriate filter file in `filters/`
-3. Update the `! Last modified:` date in the file header
-4. Submit a PR with:
-   - Description of what the rule blocks
-   - Why it's needed (authoring tool, LMS, or protocol that uses this pattern)
-   - How you tested it
-
-### Example PR description
-
-```
-Add rule to block Acme LMS xAPI endpoint
-
-- Adds `/acme-lrs/` pattern to moat-xapi.txt
-- Acme LMS uses this non-standard path for xAPI statements
-- Tested with Acme LMS trial account and sample xAPI content
-```
-
-## File structure
-
-```
-filters/
-├── moat-aicc.txt      # AICC/HACP protocol
-├── moat-cmi5.txt      # cmi5 profile
-├── moat-scorm12.txt   # SCORM 1.2
-├── moat-scorm2004.txt # SCORM 2004
-└── moat-xapi.txt      # Experience API (Tin Can)
-```
-
-Add rules to the file matching the protocol. If a pattern applies to multiple
-protocols, add it to each relevant file.
+[Add specific setup instructions for your project here]
 
 ## Code of Conduct
 
-- Be respectful and constructive
-- Focus on technical merit
-- Assume good intentions
+Please be respectful and constructive.  We're all here to build something great together.
 
 ## Questions?
 
-Open an issue with the "question" label if you're unsure about anything.
+Feel free to open an issue with your question or reach out to the maintainers. 
+
+Thank you for contributing!  🎉
