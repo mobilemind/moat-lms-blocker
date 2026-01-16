@@ -14,19 +14,9 @@ tracking data from being sent to the server. For example, block xAPI to test
 fallback to SCORM, or block SCORM 1.2 and SCORM 2004 to test fallback to AICC
 HACP.
 
-## Quick Subscribe Links
+## Installation for uBlock Origin (Recommended)
 
-Click to subscribe in uBlock Origin:
-
-| Filter List | Description | Subscribe |
-|-------------|-------------|-----------|
-| **SCORM 1.2** | Blocks SCORM 1.2 runtime communications | [Subscribe](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-scorm12.txt&title=Moat%20SCORM%201.2%20Blocker) |
-| **SCORM 2004** | Blocks SCORM 2004 runtime communications | [Subscribe](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-scorm2004.txt&title=Moat%20SCORM%202004%20Blocker) |
-| **xAPI** | Blocks Experience API (Tin Can) communications | [Subscribe](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-xapi.txt&title=Moat%20xAPI%20Blocker) |
-| **cmi5** | Blocks cmi5 launch parameters and communications | [Subscribe](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-cmi5.txt&title=Moat%20cmi5%20Blocker) |
-| **AICC** | Blocks AICC/HACP protocol communications | [Subscribe](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-aicc.txt&title=Moat%20AICC%20Blocker) |
-
-## Manual Installation
+uBlock Origin requires manual import of filter lists. Follow these steps:
 
 1. Open uBlock Origin dashboard (click the uBO icon, then the gear icon)
 2. Go to the **Filter lists** tab
@@ -42,6 +32,18 @@ https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-
 ```
 
 5. Click **Apply changes**
+
+## Quick Subscribe Links (Adblock Plus)
+
+For Adblock Plus users, click to subscribe:
+
+| Filter List | Description | Subscribe |
+|-------------|-------------|-----------|
+| **SCORM 1.2** | Blocks SCORM 1.2 runtime communications | [Subscribe](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-scorm12.txt&title=Moat%20SCORM%201.2%20Blocker) |
+| **SCORM 2004** | Blocks SCORM 2004 runtime communications | [Subscribe](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-scorm2004.txt&title=Moat%20SCORM%202004%20Blocker) |
+| **xAPI** | Blocks Experience API (Tin Can) communications | [Subscribe](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-xapi.txt&title=Moat%20xAPI%20Blocker) |
+| **cmi5** | Blocks cmi5 launch parameters and communications | [Subscribe](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-cmi5.txt&title=Moat%20cmi5%20Blocker) |
+| **AICC** | Blocks AICC/HACP protocol communications | [Subscribe](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-aicc.txt&title=Moat%20AICC%20Blocker) |
 
 ## Toggling Filter Lists
 
