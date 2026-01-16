@@ -15,7 +15,7 @@
   },
   "engines": {
     "node": ">=24.12.0",
-    "npm": ">=11.6.0"
+    "npm": ">=11.6.2"
   },
   "homepage": "https://github.com/mobilemind/moat-lms-blocker#readme",
   "keywords": [
