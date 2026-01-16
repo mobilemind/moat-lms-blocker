@@ -41,7 +41,7 @@ https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-
 https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-aicc.txt
 ```
 
-1. Click **Apply changes**
+5. Click **Apply changes**
 
 ## Toggling Filter Lists
 
