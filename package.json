@@ -1,24 +1,23 @@
 {
-  "name": "moat-lms-blocker",
-  "version": "1.0.0",
+  "author": {
+    "email": "mobilemind+mlb@pobox.com",
+    "name": "\"mobilemind\" Tom King",
+    "url": "https://mobilemind.net/"
+  },
+  "bugs": {
+    "url": "https://github.com/mobilemind/moat-lms-blocker/issues"
+  },
   "description": "Filter lists for uBlock Origin that block communications between eLearning content and Learning Management Systems (LMS) or Learning Record Stores (LRS).",
-  "private": true,
+  "devDependencies": {
+    "@adguard/aglint": "^3.0.2",
+    "markdownlint-cli": "^0.47.0",
+    "prettier": "^3.8.0"
+  },
   "engines": {
     "node": ">=24.12.0",
     "npm": ">=11.6.0"
   },
-  "scripts": {
-    "lint": "npm run lint:filters && npm run lint:json && npm run lint:markdown && npm run lint:yaml",
-    "lint:filters": "aglint filters/*.txt",
-    "lint:filters:fix": "aglint --fix filters/*.txt",
-    "lint:json": "prettier --check '**/*.json'",
-    "lint:json:fix": "prettier --write '**/*.json'",
-    "lint:markdown": "markdownlint '**/*.md' --ignore node_modules",
-    "lint:markdown:fix": "markdownlint '**/*.md' --ignore node_modules --fix",
-    "lint:yaml": "prettier --check '**/*.{yml,yaml}'",
-    "lint:yaml:fix": "prettier --write '**/*.{yml,yaml}'",
-    "test": "npm run lint"
-  },
+  "homepage": "https://github.com/mobilemind/moat-lms-blocker#readme",
   "keywords": [
     "adblock",
     "aicc",
@@ -33,15 +32,25 @@
     "ublock-origin",
     "xapi"
   ],
-  "author": "",
   "license": "MIT",
-  "devDependencies": {
-    "@adguard/aglint": "^3.0.2",
-    "markdownlint-cli": "^0.47.0",
-    "prettier": "^3.8.0"
-  },
+  "name": "moat-lms-blocker",
+  "private": true,
+  "readmeFilename": "README.md",
   "repository": {
     "type": "git",
     "url": "https://github.com/mobilemind/moat-lms-blocker.git"
-  }
+  },
+  "scripts": {
+    "lint": "npm run lint:filters && npm run lint:json && npm run lint:markdown && npm run lint:yaml",
+    "lint:filters": "aglint filters/*.txt",
+    "lint:filters:fix": "aglint --fix filters/*.txt",
+    "lint:json": "prettier --check '**/*.json'",
+    "lint:json:fix": "prettier --write '**/*.json'",
+    "lint:markdown": "markdownlint '**/*.md' --ignore node_modules",
+    "lint:markdown:fix": "markdownlint '**/*.md' --ignore node_modules --fix",
+    "lint:yaml": "prettier --check '**/*.{yml,yaml}'",
+    "lint:yaml:fix": "prettier --write '**/*.{yml,yaml}'",
+    "test": "npm run lint"
+  },
+  "version": "1.0.0"
 }
