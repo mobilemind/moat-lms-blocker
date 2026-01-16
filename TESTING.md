@@ -18,6 +18,7 @@ npm run lint:fix
 ```
 
 AGLint validates:
+
 - uBlock Origin syntax compatibility
 - Proper comment and metadata formatting
 - Rule structure correctness
@@ -41,7 +42,7 @@ All filter files must pass linting. The linter runs automatically on pull reques
 
 ### Setup
 
-1. Sign up at https://cloud.scorm.com (free trial)
+1. Sign up at <https://cloud.scorm.com> (free trial)
 2. Upload your content package (SCORM, xAPI, cmi5, or AICC)
 3. Enable the appropriate Moat filter list(s) in uBlock Origin
 4. Launch the content from SCORM Cloud
@@ -65,7 +66,7 @@ All filter files must pass linting. The linter runs automatically on pull reques
 
 ### Golf Examples (Official SCORM Samples)
 
-Download from: https://scorm.com/scorm-explained/technical-scorm/golf-examples/
+Download from: <https://scorm.com/scorm-explained/technical-scorm/golf-examples/>
 
 | Package | Protocol | Use With |
 |---------|----------|----------|
@@ -132,6 +133,7 @@ See how content behaves when it can't reach the LMS:
 ### Console Tab
 
 Watch for JavaScript errors when LMS communication is blocked:
+
 - "API not found"
 - "LMSInitialize failed"
 - "Unable to connect to LRS"
@@ -155,6 +157,7 @@ Alternatively, temporarily disable uBlock Origin entirely by clicking the power 
 ### Content doesn't load at all
 
 The blockers should only block LMS communication, not content. If content fails to load:
+
 - Disable blockers and verify content loads
 - Check if content requires LMS APIs to initialize (some poorly-designed content does)
 - Check Console tab for unrelated JavaScript errors
@@ -169,5 +172,6 @@ The blockers should only block LMS communication, not content. If content fails 
 ### Requests still getting through
 
 Some patterns may not be covered. Check the Network tab for the specific URLs and consider:
+
 - Opening an issue on the [GitHub repo](https://github.com/mobilemind/moat-lms-blocker/issues)
 - Adding custom rules in uBlock Origin's "My filters" tab
