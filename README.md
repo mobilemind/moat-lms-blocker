@@ -14,6 +14,12 @@ tracking data from being sent to the server. For example, block xAPI to test
 fallback to SCORM, or block SCORM 1.2 and SCORM 2004 to test fallback to AICC
 HACP.
 
+**Why MOAT?**
+
+Once upon a time I had greater ambitions for a "Multi-protocol Online Analytic
+Tool" for elearning to isolate content from the LMS castle. _Or perhaps it was_
+_vice versa?_ This is the polished version of hacks I made about ten years ago.
+
 ## Installation for uBlock Origin (Recommended)
 
 uBlock Origin requires manual import of filter lists. Follow these steps:
