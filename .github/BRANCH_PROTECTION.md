@@ -143,20 +143,22 @@ All workflows already have proper security:
 
 ### Consider Adding:
 
-1. **CodeQL Analysis** (GitHub Advanced Security)
-   - Automated security scanning
-   - Detects common vulnerabilities
+1. **CodeQL Analysis**
+   - Automated security scanning for code vulnerabilities
+   - Detects common security issues and coding errors
    - Free for public repositories
+   - Example: `.github/workflows/codeql.yml`
 
 2. **Dependency Review Action**
    - Reviews dependency changes in PRs
    - Alerts on new vulnerabilities
    - Example: `actions/dependency-review-action`
 
-3. **Renovate or Mend Bolt**
-   - More advanced dependency management
+3. **Renovate Bot**
+   - Advanced dependency management alternative to Dependabot
    - Grouped updates for related dependencies
    - Custom scheduling and automerge rules
+   - Highly configurable update strategies
 
 4. **Commit Signing Enforcement**
    - Requires GPG/SSH signed commits
