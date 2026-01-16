@@ -2,30 +2,30 @@ name: Lint Filter Lists
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   lint:
     name: Lint filter list files
     runs-on: ubuntu-latest
-    
+
     permissions:
       contents: read
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '24'
-          cache: 'npm'
-          
+          node-version: "24"
+          cache: "npm"
+
       - name: Install dependencies
         run: npm ci
-        
+
       - name: Run AGLint
-        run: npm run lint
+        run: npm run lint:filters

@@ -3,6 +3,6 @@ contact_links:
   - name: 💬 GitHub Discussions
     url: https://github.com/mobilemind/moat-lms-blocker/discussions
     about: Ask questions and discuss ideas with the community
-  - name:  🔒 Security Vulnerability
+  - name: 🔒 Security Vulnerability
     url: https://github.com/mobilemind/moat-lms-blocker/security/advisories/new
     about: Report a security vulnerability privately (DO NOT create a public issue)

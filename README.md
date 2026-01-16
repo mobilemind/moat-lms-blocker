@@ -1,5 +1,10 @@
 # Moat LMS Blocker - uBlock Origin Filter Lists
 
+[![Lint Filter Lists](https://github.com/mobilemind/moat-lms-blocker/actions/workflows/lint-filters.yml/badge.svg)](https://github.com/mobilemind/moat-lms-blocker/actions/workflows/lint-filters.yml)
+[![Lint JSON Files](https://github.com/mobilemind/moat-lms-blocker/actions/workflows/lint-json.yml/badge.svg)](https://github.com/mobilemind/moat-lms-blocker/actions/workflows/lint-json.yml)
+[![Lint Markdown Files](https://github.com/mobilemind/moat-lms-blocker/actions/workflows/lint-markdown.yml/badge.svg)](https://github.com/mobilemind/moat-lms-blocker/actions/workflows/lint-markdown.yml)
+[![Lint YAML Files](https://github.com/mobilemind/moat-lms-blocker/actions/workflows/lint-yaml.yml/badge.svg)](https://github.com/mobilemind/moat-lms-blocker/actions/workflows/lint-yaml.yml)
+
 Filter lists for [uBlock Origin](https://ublockorigin.com/) that block
 communications between eLearning content and Learning Management Systems (LMS)
 or Learning Record Stores (LRS).
@@ -28,7 +33,7 @@ Click to subscribe in uBlock Origin:
 3. Scroll to the bottom and check **Import** under "Custom"
 4. Paste one or more of these URLs:
 
-```
+```text
 https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-scorm12.txt
 https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-scorm2004.txt
 https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-xapi.txt
@@ -36,7 +41,7 @@ https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-
 https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-aicc.txt
 ```
 
-5. Click **Apply changes**
+1. Click **Apply changes**
 
 ## Toggling Filter Lists
 

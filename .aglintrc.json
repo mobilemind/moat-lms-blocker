@@ -1,9 +1,5 @@
 {
   "root": true,
-  "extends": [
-    "aglint:recommended"
-  ],
-  "syntax": [
-    "UblockOrigin"
-  ]
+  "extends": ["aglint:recommended"],
+  "syntax": ["UblockOrigin"]
 }
