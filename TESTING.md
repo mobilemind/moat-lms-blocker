@@ -7,7 +7,7 @@ This guide helps you verify the filter lists are working and use them to debug y
 Before testing filter lists in a browser, validate their syntax using AGLint:
 
 ```bash
-# Install dependencies (first time only, requires Node.js 22+)
+# Install dependencies (first time only, requires Node.js 24+)
 npm install
 
 # Lint all filter files
@@ -25,7 +25,7 @@ AGLint validates:
 
 All filter files must pass linting. The linter runs automatically on pull requests via GitHub Actions.
 
-**Note:** Node.js 22 or higher is required due to AGLint's dependencies.
+**Note:** Node.js 24 or higher is required (minimum 22 required by AGLint's dependencies).
 
 ## Quick Verification
 

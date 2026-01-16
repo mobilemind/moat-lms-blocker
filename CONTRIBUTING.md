@@ -59,7 +59,7 @@ This project uses AGLint for validating filter list syntax.
 
 ### Prerequisites
 
-- Node.js 22 or higher (required by AGLint's dependency @adguard/agtree)
+- Node.js 24 or higher (22 or higher required by AGLint's dependency @adguard/agtree)
 - npm (comes with Node.js)
 
 ### Setup
