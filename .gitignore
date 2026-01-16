@@ -12,3 +12,6 @@
 
 # Backup files
 *.bak
+
+# Node.js
+node_modules/

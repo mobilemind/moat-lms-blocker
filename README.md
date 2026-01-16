@@ -99,6 +99,10 @@ See [TESTING.md](TESTING.md) for:
 Found a pattern that should be blocked? See [CONTRIBUTING.md](CONTRIBUTING.md) for
 guidelines on reporting issues and submitting pull requests.
 
+Filter lists are validated using [AGLint](https://github.com/AdguardTeam/AGLint), a
+universal adblock filter list linter that checks for syntax errors and validates
+uBlock Origin filter syntax.
+
 ## License
 
 MIT License - See [LICENSE](LICENSE) file.
