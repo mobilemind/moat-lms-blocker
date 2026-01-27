@@ -1,7 +1,9 @@
 ## Description
+
 <!-- Provide a brief description of the changes in this PR -->
 
 ## Type of Change
+
 <!-- Mark the relevant option with an "x" -->
 
 - [ ] Bug fix (non-breaking change which fixes an issue)
@@ -13,10 +15,12 @@
 - [ ] Test update
 
 ## Related Issues
+
 <!-- Link to related issues using #issue_number -->
 Closes #
 
 ## Changes Made
+
 <!-- List the specific changes made in this PR -->
 
 - 
@@ -24,6 +28,7 @@ Closes #
 - 
 
 ## Testing
+
 <!-- Describe the testing you've done -->
 
 - [ ] I have tested these changes locally
@@ -31,6 +36,7 @@ Closes #
 - [ ] I have added tests for new functionality
 
 ## Checklist
+
 <!-- Mark completed items with an "x" -->
 
 - [ ] My code follows the project's style guidelines
@@ -41,7 +47,9 @@ Closes #
 - [ ] I have checked my code and corrected any misspellings
 
 ## Screenshots (if applicable)
+
 <!-- Add screenshots to help explain your changes -->
 
 ## Additional Notes
+
 <!-- Any additional information that reviewers should know -->

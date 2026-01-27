@@ -9,20 +9,24 @@ This document outlines the recommended branch protection rules and GitHub Action
 ### Recommended Settings:
 
 #### 1. Require Pull Request Reviews
+
 - **Require approvals**: 1 approval minimum
 - **Dismiss stale reviews**: Yes (when new commits are pushed)
 - **Require review from Code Owners**: Optional (if CODEOWNERS is used)
 
 #### 2. Require Status Checks to Pass
+
 **Enable**: Require status checks to pass before merging
 
 **Required status checks** (all must pass):
+
 - `Lint filter list files` (from lint-filters.yml)
 - `Lint JSON files` (from lint-json.yml)
 - `Lint Markdown files` (from lint-markdown.yml)
 - `Lint YAML files` (from lint-yaml.yml)
 
 **Additional settings**:
+
 - ✅ Require branches to be up to date before merging
 - ✅ Do NOT require approval to run workflows on PRs from contributors
   - This allows checks to run automatically without maintainer approval
@@ -30,21 +34,26 @@ This document outlines the recommended branch protection rules and GitHub Action
   - No write access or secrets are exposed
 
 #### 3. Require Conversation Resolution
+
 - **Enabled**: Require all conversations to be resolved before merging
 
 #### 4. Require Signed Commits (Optional but Recommended)
+
 - **Enabled**: Require commits to be signed
 - Enhances security by verifying commit authenticity
 
 #### 5. Require Linear History
+
 - **Enabled**: Prevent merge commits
 - Keeps history clean with rebase/squash merges
 
 #### 6. Include Administrators
+
 - **Enabled**: Apply rules to administrators
 - Ensures consistency and prevents accidental bypasses
 
 #### 7. Restrict Pushes
+
 - **Allow force pushes**: No
 - **Allow deletions**: No
 
@@ -64,6 +73,7 @@ All workflows already implement security best practices:
 ### Why `pull_request` is Safe
 
 The workflows use `pull_request` trigger which:
+
 - ✅ Runs in the context of the PR branch (not main)
 - ✅ Does not have access to repository secrets
 - ✅ Only has `contents: read` permission
@@ -71,6 +81,7 @@ The workflows use `pull_request` trigger which:
 - ✅ Safe to run without approval for external contributors
 
 Using `pull_request` instead of `pull_request_target` means:
+
 - Checks run automatically on all PRs
 - No maintainer approval needed to run checks
 - Malicious PRs cannot access secrets or write to the repo
@@ -117,6 +128,7 @@ Current configuration in `.github/dependabot.yml`:
 ### Step 2: Verify Workflow Security
 
 All workflows already have proper security:
+
 - ✅ Minimal permissions set
 - ✅ Using `pull_request` trigger (safe for external contributors)
 - ✅ No secrets exposed
