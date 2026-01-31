@@ -29,5 +29,7 @@ We will respond to security reports within 48 hours and will keep you updated on
 
 - Never commit sensitive data (API keys, passwords, tokens)
 - Keep dependencies up to date
+- Pin dependencies to a specific version
+- Avoid automatic lifecycle scripts (preinstall, postinstall, & prepare)
 - Follow secure coding practices
 - Use signed commits when possible
