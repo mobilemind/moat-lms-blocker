@@ -2,8 +2,8 @@
 ! Description: Blocks AICC/HACP protocol requests and communication files
 ! Homepage: https://github.com/mobilemind/moat-lms-blocker
 ! License: MIT
-! Last modified: 2026-01-15
-! Expires: 14 days
+! Last modified: 2026-02-28
+! Expires: 30 days
 
 ! AICC Specific Scripts and Documents
 /lms\/AICCFunctions\.js$script,1p
@@ -29,6 +29,9 @@
 /lms\/NONEFunctions\.js$script,1p
 /scormdriver\.js$script,1p
 /lms\/UtilityFunctions\.js$script,1p
+
+! Rustici Driver Config File (Rise 360 AICC exports)
+/driverOptions\.js$script,1p
 
 ! LMS Communication Documents
 /lms\/blank\.html$document,1p

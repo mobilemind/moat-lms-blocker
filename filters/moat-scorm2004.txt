@@ -2,8 +2,8 @@
 ! Description: Blocks SCORM 2004 runtime library scripts and sequencing communications
 ! Homepage: https://github.com/mobilemind/moat-lms-blocker
 ! License: MIT
-! Last modified: 2026-01-15
-! Expires: 14 days
+! Last modified: 2026-02-28
+! Expires: 30 days
 
 ! SCORM 2004 Specific Scripts
 /lms\/SCORM2004Functions\.js$script,1p
@@ -26,6 +26,27 @@
 /APIWrapper2004\.js$script,1p
 /scofunctions\.js$script,1p
 /scorm_support\.js$script,1p
+
+! Rustici Driver Config File (Rise 360, dominKnow ONE)
+/driverOptions\.js$script,1p
+
+! Rustici SCORM Cloud Tracking
+||cloud.scorm.com/tc/$xhr,document
+
+! Adobe Captivate Classic Runtime
+/CPM\.js$script,1p
+/SCORM_support/standard\.js$script,1p
+
+! Lectora (ELB Learning) SCORM Runtime
+/trivantis-cookie\.js$script,1p
+
+! Moodle SCORM Module Tracking Endpoint
+/mod/scorm/datamodel\.php$xhr,document
+
+! scorm-again Open-Source SCORM Runtime
+/scorm-again\.js$script,1p
+/scorm-again\.min\.js$script,1p
+/scorm2004\.min\.js$script,1p
 
 ! LMS Communication Documents
 /lms\/blank\.html$document,1p

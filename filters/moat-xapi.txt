@@ -2,8 +2,8 @@
 ! Description: Blocks Experience API (Tin Can) statements, agents, activities, and state endpoints
 ! Homepage: https://github.com/mobilemind/moat-lms-blocker
 ! License: MIT
-! Last modified: 2026-01-15
-! Expires: 14 days
+! Last modified: 2026-02-28
+! Expires: 30 days
 
 ! xAPI Endpoint Patterns
 ||*/xAPI/statements$xhr,document
@@ -31,3 +31,19 @@
 ! TinCanJS Libraries
 /tincan\.js$script,1p
 /tincan-min\.js$script,1p
+
+! Rustici Engine LRS Endpoints (SCORM Engine pre-2018 and post-2018)
+||*/ScormEngineInterface/TCAPI/$xhr,document
+||*/RusticiEngine/lrs/$xhr,document
+
+! Canvas LTI xAPI Callback
+||*/api/lti/v1/xapi/$xhr,document
+
+! Moodle xAPI Web Service
+/[&?]wsfunction=core_xapi_/$xhr,document
+
+! xAPI Actor Launch Parameter (Rise 360, dominKnow inline xAPI)
+/[&?]actor=/$xhr,document
+
+! dominKnow Convey Hosted Content Delivery (xAPI and cmi5 via SCORM stub)
+||dominknow.one^

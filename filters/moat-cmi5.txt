@@ -2,8 +2,8 @@
 ! Description: Blocks cmi5 launch parameters, course manifests, and client libraries
 ! Homepage: https://github.com/mobilemind/moat-lms-blocker
 ! License: MIT
-! Last modified: 2026-01-15
-! Expires: 14 days
+! Last modified: 2026-02-28
+! Expires: 30 days
 
 ! cmi5 Launch Parameters
 /[&?]fetch=/$xhr,document
@@ -23,3 +23,9 @@
 ! cmi5 Authentication and API Endpoints
 ||*/auth-token$xhr,document
 ||*/cmi5/*$xhr,document,script
+
+! Rustici Driver Config File (Rise 360, dominKnow cmi5 exports)
+/driverOptions\.js$script,1p
+
+! dominKnow Convey cmi5 Delivery
+||dominknow.one^
