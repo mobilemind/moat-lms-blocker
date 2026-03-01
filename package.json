@@ -9,13 +9,13 @@
   },
   "description": "Filter lists for uBlock Origin that block communications between eLearning content and Learning Management Systems (LMS) or Learning Record Stores (LRS).",
   "devDependencies": {
-    "@adguard/aglint": "3.0.2",
-    "markdownlint-cli": "0.47.0",
-    "prettier": "3.8.1"
+    "@adguard/aglint": "~3.0.2",
+    "markdownlint-cli2": "~0.21.0",
+    "prettier": "~3.8.1"
   },
   "engines": {
-    "node": ">=24.13.0",
-    "npm": ">=11.6.2"
+    "node": ">=24.14.0",
+    "npm": ">=11.9.0"
   },
   "homepage": "https://github.com/mobilemind/moat-lms-blocker#readme",
   "keywords": [
@@ -46,8 +46,8 @@
     "lint:filters:fix": "aglint --fix filters/*.txt",
     "lint:json": "prettier --check '**/*.json'",
     "lint:json:fix": "prettier --write '**/*.json'",
-    "lint:markdown": "markdownlint '**/*.md' --ignore node_modules",
-    "lint:markdown:fix": "markdownlint '**/*.md' --ignore node_modules --fix",
+    "lint:markdown": "markdownlint-cli2 '**/*.md'",
+    "lint:markdown:fix": "markdownlint-cli2 --fix '**/*.md'",
     "lint:yaml": "prettier --check '**/*.{yml,yaml}'",
     "lint:yaml:fix": "prettier --write '**/*.{yml,yaml}'",
     "test": "npm run lint"

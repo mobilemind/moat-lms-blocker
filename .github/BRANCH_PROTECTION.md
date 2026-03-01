@@ -2,11 +2,12 @@
 
 ## Overview
 
-This document outlines the recommended branch protection rules and GitHub Actions configuration for the moat-lms-blocker repository to ensure code quality and security.
+This document outlines the recommended branch protection rules and GitHub Actions
+configuration for the moat-lms-blocker repository to ensure code quality and security.
 
 ## Branch Protection Rules for `main` branch
 
-### Recommended Settings:
+### Recommended Settings
 
 #### 1. Require Pull Request Reviews
 
@@ -65,7 +66,7 @@ All workflows already implement security best practices:
 
 1. **Minimal Permissions**: All jobs use `permissions: contents: read`
 2. **Pinned Actions**: Using specific versions (v6) instead of mutable tags
-3. **Trigger Configuration**: 
+3. **Trigger Configuration**:
    - Runs on `push` to `main` branch
    - Runs on `pull_request` to `main` branch
    - Uses `pull_request` (not `pull_request_target`) to avoid exposing secrets
@@ -109,6 +110,7 @@ The repository uses a `.npmrc` file with security-focused settings:
 ## Dependabot Configuration
 
 Current configuration in `.github/dependabot.yml`:
+
 - Weekly updates for both GitHub Actions and npm
 - Limited to 5 open PRs per ecosystem
 - Helps keep dependencies secure and up-to-date
@@ -153,7 +155,7 @@ All workflows already have proper security:
 
 ## Additional Recommendations
 
-### Consider Adding:
+### Consider Adding
 
 1. **CodeQL Analysis**
    - Automated security scanning for code vulnerabilities
