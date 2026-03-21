@@ -38,7 +38,7 @@
   "readmeFilename": "README.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mobilemind/moat-lms-blocker.git"
+    "url": "git+https://github.com/mobilemind/moat-lms-blocker.git"
   },
   "scripts": {
     "lint": "npm run lint:filters && npm run lint:json && npm run lint:markdown && npm run lint:yaml",
