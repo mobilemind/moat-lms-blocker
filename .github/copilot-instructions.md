@@ -62,7 +62,7 @@ Every filter file begins with a required metadata header:
 
 | Pattern | Meaning |
 |---------|---------|
-| `/path\.js$script,1p` | Block a first-party script whose URL matches the regex |
+| `/path\.js$/$script,1p` | Block a first-party script whose URL matches the regex |
 | `\|\|domain.tld^` | Block all requests to a domain |
 | `\|\|*/path/$xhr,document` | Block XHR/document requests matching the path on any host |
 | `$script` | Resource type: JavaScript file |

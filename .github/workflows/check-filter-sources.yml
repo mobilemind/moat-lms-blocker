@@ -14,6 +14,10 @@ jobs:
       issues: write
 
     steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.13.1
       - name: Ensure sources-check label exists
         env:
           GH_TOKEN: ${{ github.token }}
@@ -58,14 +62,11 @@ jobs:
             "AICC/cmi5" \
             "RusticiSoftware/scorm-again"; do
             DATA=$(gh api "repos/$REPO/releases/latest" \
-              --jq '"\(.published_at) \(.tag_name) \(.html_url)"' \
+              --jq '"\(.published_at)\t\(.tag_name)\t\(.html_url)"' \
               2>/dev/null) || true
             if [ -n "$DATA" ]; then
-              DATE="${DATA%% *}"
-              REST="${DATA#* }"
-              TAG="${REST%% *}"
-              URL="${REST#* }"
-              if [ "$DATE" \> "$THRESHOLD" ]; then
+              IFS=$'\t' read -r DATE TAG URL <<< "$DATA"
+              if [ -n "$DATE" ] && [ -n "$TAG" ] && [ -n "$URL" ] && [ "$DATE" \> "$THRESHOLD" ]; then
                 SHORT="${DATE%T*}"
                 printf '- `%s %s` released %s — [release notes](%s)\n' \
                   "$REPO" "$TAG" "$SHORT" "$URL" \
