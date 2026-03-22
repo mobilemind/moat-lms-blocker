@@ -170,8 +170,12 @@ issues are more actionable:
   security on a public repository.
 - Actions pinned to major version tags (`@v6`, `@v1`). Dependabot keeps them current.
   Do **not** suggest pinning to commit SHAs.
-- New workflows follow the pattern of existing ones: `ubuntu-latest`, Node.js 24,
-  `npm ci --ignore-scripts`, `permissions: contents: read` at the job level.
+- New **CI and lint** workflows (triggered by `pull_request`) follow the pattern of
+  existing ones: `ubuntu-latest`, Node.js 24, `npm ci --ignore-scripts`,
+  `permissions: contents: read` at the job level.
+- Scheduled or other maintenance workflows may omit `pull_request` triggers and
+  dependency installation when not required, but should still use minimal permissions
+  and mirror the structure of existing scheduled workflows.
 - YAML validated by Prettier (`npm run lint:yaml`). No yamllint is used.
 
 ## Shell Scripts
