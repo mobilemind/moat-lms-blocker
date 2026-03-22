@@ -1,0 +1,163 @@
+name: Check Filter Sources
+
+on:
+  schedule:
+    - cron: "0 8 1 * *"
+  workflow_dispatch:
+
+jobs:
+  check-sources:
+    name: Check upstream eLearning sources
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+
+    steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+      - name: Ensure sources-check label exists
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create sources-check \
+            --repo "$GITHUB_REPOSITORY" \
+            --description "Automated upstream source monitoring" \
+            --color "0075ca" \
+            --force
+
+      - name: Check for existing open issue this month
+        id: dedup
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          MONTH=$(date +%Y-%m)
+          COUNT=$(gh issue list \
+            --repo "$GITHUB_REPOSITORY" \
+            --label sources-check \
+            --state open \
+            --json title \
+            --jq "[.[] | select(.title | contains(\"$MONTH\"))] | length")
+          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+          echo "month=$MONTH" >> "$GITHUB_OUTPUT"
+
+      - name: Gather release and activity findings
+        if: steps.dedup.outputs.count == '0'
+        id: gather
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPORT_MONTH: ${{ steps.dedup.outputs.month }}
+        run: |
+          THRESHOLD=$(date -d '35 days ago' +%Y-%m-%dT%H:%M:%SZ)
+          : > /tmp/release_items.txt
+          : > /tmp/npm_items.txt
+          : > /tmp/activity_items.txt
+
+          # GitHub releases for key eLearning runtime libraries and specs
+          for REPO in \
+            "jcputney/scorm-again" \
+            "ADL-Net/xAPI-Spec" \
+            "AICC/cmi5" \
+            "RusticiSoftware/scorm-again"; do
+            DATA=$(gh api "repos/$REPO/releases/latest" \
+              --jq '"\(.published_at)\t\(.tag_name)\t\(.html_url)"' \
+              2>/dev/null) || true
+            if [ -n "$DATA" ]; then
+              IFS=$'\t' read -r DATE TAG URL <<< "$DATA"
+              if [ -n "$DATE" ] && [ -n "$TAG" ] && [ -n "$URL" ] && [ "$DATE" \> "$THRESHOLD" ]; then
+                SHORT="${DATE%T*}"
+                printf '- `%s %s` released %s — [release notes](%s)\n' \
+                  "$REPO" "$TAG" "$SHORT" "$URL" \
+                  >> /tmp/release_items.txt
+              fi
+            fi
+          done
+
+          # npm packages for SCORM and xAPI runtimes
+          for PKG in "scorm-again" "tincan"; do
+            MODIFIED=$(npm view "$PKG" time.modified 2>/dev/null) || true
+            if [ -n "$MODIFIED" ]; then
+              ISO=$(date -d "$MODIFIED" +%Y-%m-%dT%H:%M:%SZ 2>/dev/null) || true
+              if [ -n "$ISO" ] && [ "$ISO" \> "$THRESHOLD" ]; then
+                LATEST=$(npm view "$PKG" dist-tags.latest 2>/dev/null) || LATEST="?"
+                SHORT="${ISO%T*}"
+                printf '- `%s@%s` last modified %s on npm\n' \
+                  "$PKG" "$LATEST" "$SHORT" \
+                  >> /tmp/npm_items.txt
+              fi
+            fi
+          done
+
+          # Spec and community repo commit activity
+          SINCE="$THRESHOLD"
+          for SPEC_REPO in "ADL-Net/xAPI-Spec" "AICC/cmi5"; do
+            SPEC_COUNT=$(gh api \
+              "repos/$SPEC_REPO/commits?since=$SINCE&per_page=1" \
+              --jq 'length' 2>/dev/null) || SPEC_COUNT=0
+            if [ "$SPEC_COUNT" -gt 0 ]; then
+              printf '- `%s` had commits in the past 35 days\n' \
+                "$SPEC_REPO" >> /tmp/activity_items.txt
+            fi
+          done
+
+          UBO_COUNT=$(gh api \
+            "repos/uBlockOrigin/uAssets/commits?since=$SINCE&per_page=5" \
+            --jq '[.[] | .commit.message | select(test("(?i)(scorm|xapi|lms|lrs|cmi5|aicc|elearn)"))] | length' \
+            2>/dev/null) || UBO_COUNT=0
+          if [ "$UBO_COUNT" -gt 0 ]; then
+            printf '- `uBlockOrigin/uAssets` had %s commit(s) mentioning eLearning terms\n' \
+              "$UBO_COUNT" >> /tmp/activity_items.txt
+          fi
+
+          # Compose issue body
+          HAS_FINDINGS=false
+          printf '## Filter Sources Check — %s\n\n' "$REPORT_MONTH" > /tmp/issue_body.txt
+          printf 'The scheduled source check found potential updates. Review and consider whether the filter lists need updates.\n' \
+            >> /tmp/issue_body.txt
+
+          if [ -s /tmp/release_items.txt ]; then
+            HAS_FINDINGS=true
+            printf '\n### GitHub Releases\n\n' >> /tmp/issue_body.txt
+            cat /tmp/release_items.txt >> /tmp/issue_body.txt
+          fi
+
+          if [ -s /tmp/npm_items.txt ]; then
+            HAS_FINDINGS=true
+            printf '\n### npm Packages\n\n' >> /tmp/issue_body.txt
+            cat /tmp/npm_items.txt >> /tmp/issue_body.txt
+          fi
+
+          if [ -s /tmp/activity_items.txt ]; then
+            HAS_FINDINGS=true
+            printf '\n### Spec and Community Activity\n\n' >> /tmp/issue_body.txt
+            cat /tmp/activity_items.txt >> /tmp/issue_body.txt
+          fi
+
+          if [ "$HAS_FINDINGS" = "true" ]; then
+            printf '\n### Suggested Actions\n\n' >> /tmp/issue_body.txt
+            printf '- Review changelogs for new script filenames, API endpoints, or URL patterns\n' \
+              >> /tmp/issue_body.txt
+            printf '- Check if new spec versions introduce new endpoint paths\n' \
+              >> /tmp/issue_body.txt
+            printf '- Run `npm run lint:filters` after any filter changes\n' \
+              >> /tmp/issue_body.txt
+            printf '- Update `! Last modified:` dates in changed filter files\n' \
+              >> /tmp/issue_body.txt
+            printf '\n/cc @mobilemind\n' >> /tmp/issue_body.txt
+          fi
+
+          echo "has_findings=$HAS_FINDINGS" >> "$GITHUB_OUTPUT"
+
+      - name: Create issue
+        if: steps.gather.outputs.has_findings == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPORT_MONTH: ${{ steps.dedup.outputs.month }}
+        run: |
+          gh issue create \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "Filter Sources Check — ${REPORT_MONTH}" \
+            --label sources-check \
+            --body-file /tmp/issue_body.txt
