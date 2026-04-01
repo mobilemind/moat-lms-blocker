@@ -1,6 +1,7 @@
+---
 name: Check Filter Sources
 
-on:
+"on":
   schedule:
     - cron: "0 8 1 * *"
   workflow_dispatch:
@@ -68,7 +69,7 @@ jobs:
               IFS=$'\t' read -r DATE TAG URL <<< "$DATA"
               if [ -n "$DATE" ] && [ -n "$TAG" ] && [ -n "$URL" ] && [ "$DATE" \> "$THRESHOLD" ]; then
                 SHORT="${DATE%T*}"
-                printf '- `%s %s` released %s — [release notes](%s)\n' \
+                printf '- `%s %s` released %s - [release notes](%s)\n' \
                   "$REPO" "$TAG" "$SHORT" "$URL" \
                   >> /tmp/release_items.txt
               fi
@@ -113,7 +114,7 @@ jobs:
 
           # Compose issue body
           HAS_FINDINGS=false
-          printf '## Filter Sources Check — %s\n\n' "$REPORT_MONTH" > /tmp/issue_body.txt
+          printf '## Filter Sources Check - %s\n\n' "$REPORT_MONTH" > /tmp/issue_body.txt
           printf 'The scheduled source check found potential updates. Review and consider whether the filter lists need updates.\n' \
             >> /tmp/issue_body.txt
 
@@ -158,6 +159,6 @@ jobs:
         run: |
           gh issue create \
             --repo "$GITHUB_REPOSITORY" \
-            --title "Filter Sources Check — ${REPORT_MONTH}" \
+            --title "Filter Sources Check - ${REPORT_MONTH}" \
             --label sources-check \
             --body-file /tmp/issue_body.txt

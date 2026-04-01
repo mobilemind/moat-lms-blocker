@@ -1,6 +1,7 @@
+---
 name: Lint JSON Files
 
-on:
+"on":
   push:
     branches: [main]
   pull_request:
