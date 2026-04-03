@@ -34,6 +34,11 @@
   ],
   "license": "MIT",
   "name": "moat-lms-blocker",
+  "overrides": {
+    "markdownlint-cli2": {
+      "smol-toml": "1.6.1"
+    }
+  },
   "private": true,
   "readmeFilename": "README.md",
   "repository": {
