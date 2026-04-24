@@ -97,7 +97,6 @@ Firefox and Edge provide the best experience.
 
 - HACP protocol commands (getparam, putparam, exitau, etc.)
 
-
 ## Testing & Debugging
 
 See [TESTING.md](TESTING.md) for:
