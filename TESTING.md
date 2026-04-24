@@ -1,6 +1,7 @@
 # Testing Guide
 
-This guide helps you verify the filter lists are working and use them to debug your eLearning content.
+This guide helps you verify the filter lists are working and use them to debug
+your eLearning content.
 
 ## Filter List Validation
 
@@ -24,9 +25,11 @@ AGLint validates:
 - Rule structure correctness
 - Common syntax errors
 
-All filter files must pass linting. The linter runs automatically on pull requests via GitHub Actions.
+All filter files must pass linting. The linter runs automatically on pull
+requests via GitHub Actions.
 
-**Note:** Node.js 24 or higher is required (minimum 22 required by AGLint's dependencies).
+**Note:** Node.js 24 or higher is required (minimum 22 required by AGLint's
+dependencies).
 
 ## Quick Verification
 
@@ -38,7 +41,8 @@ All filter files must pass linting. The linter runs automatically on pull reques
 
 ## Test Environment: SCORM Cloud
 
-[SCORM Cloud](https://cloud.scorm.com) offers a free trial and is ideal for testing.
+[SCORM Cloud](https://cloud.scorm.com) offers a free trial and is ideal for
+testing.
 
 ### Setup
 
@@ -68,27 +72,28 @@ All filter files must pass linting. The linter runs automatically on pull reques
 
 Download from: <https://scorm.com/scorm-explained/technical-scorm/golf-examples/>
 
-| Package | Protocol | Use With |
-|---------|----------|----------|
-| RuntimeBasicCalls_SCORM12.zip | SCORM 1.2 | moat-scorm12.txt |
+| Package                                    | Protocol   | Use With           |
+| ------------------------------------------ | ---------- | ------------------ |
+| RuntimeBasicCalls_SCORM12.zip              | SCORM 1.2  | moat-scorm12.txt   |
 | RuntimeBasicCalls_SCORM2004_3rdEdition.zip | SCORM 2004 | moat-scorm2004.txt |
 
 ### Your Own Content
 
 Test content exported from common authoring tools:
 
-| Authoring Tool | Exports To | Filter List |
-|----------------|------------|-------------|
+| Authoring Tool            | Exports To                  | Filter List                          |
+| ------------------------- | --------------------------- | ------------------------------------ |
+| Adobe Captivate           | SCORM 1.2, SCORM 2004       | moat-scorm12/2004.txt                |
 | Articulate Storyline/Rise | SCORM 1.2, SCORM 2004, xAPI | moat-scorm12/2004.txt, moat-xapi.txt |
-| Adobe Captivate | SCORM 1.2, SCORM 2004 | moat-scorm12/2004.txt |
-| Lectora | SCORM 1.2, SCORM 2004, AICC | moat-scorm12/2004.txt, moat-aicc.txt |
-| iSpring | SCORM 1.2, SCORM 2004, xAPI | moat-scorm12/2004.txt, moat-xapi.txt |
+| iSpring                   | SCORM 1.2, SCORM 2004, xAPI | moat-scorm12/2004.txt, moat-xapi.txt |
+| Lectora                   | SCORM 1.2, SCORM 2004, AICC | moat-scorm12/2004.txt, moat-aicc.txt |
 
 ## Debugging Scenarios
 
 ### Scenario 1: Test Protocol Fallback
 
-Many content packages support multiple protocols. Use blockers to test fallback behavior:
+Many content packages support multiple protocols. Use blockers to test
+fallback behavior:
 
 1. Enable `moat-xapi.txt` to block xAPI
 2. Launch content that supports both xAPI and SCORM
@@ -123,12 +128,12 @@ See how content behaves when it can't reach the LMS:
 
 **Look for these patterns when blockers are active:**
 
-| Protocol | Blocked Requests |
-|----------|------------------|
-| SCORM | `scormdriver.js`, `APIWrapper.js`, files in `/lms/` |
-| xAPI | `/xAPI/statements`, `/xAPI/activities`, `/tcapi/` |
-| cmi5 | `cmi5.xml`, `/auth-token`, requests with `fetch=` parameter |
-| AICC | Requests with `command=getparam`, `aicc_url=` parameter |
+| Protocol | Blocked Requests                                            |
+| -------- | ----------------------------------------------------------- |
+| AICC     | Requests with `command=getparam`, `aicc_url=` parameter     |
+| cmi5     | `cmi5.xml`, `/auth-token`, requests with `fetch=` parameter |
+| SCORM    | `scormdriver.js`, `APIWrapper.js`, files in `/lms/`         |
+| xAPI     | `/xAPI/statements`, `/xAPI/activities`, `/tcapi/`           |
 
 ### Console Tab
 
@@ -150,16 +155,19 @@ To quickly enable/disable blockers during testing:
 4. Check/uncheck filter lists under "Custom"
 5. Click "Apply changes"
 
-Alternatively, temporarily disable uBlock Origin entirely by clicking the power icon.
+Alternatively, temporarily disable uBlock Origin entirely by clicking the
+power icon.
 
 ## Troubleshooting
 
 ### Content doesn't load at all
 
-The blockers should only block LMS communication, not content. If content fails to load:
+The blockers should only block LMS communication, not content. If content
+fails to load:
 
 - Disable blockers and verify content loads
-- Check if content requires LMS APIs to initialize (some poorly-designed content does)
+- Check if content requires LMS APIs to initialize (some poorly-designed
+  content does)
 - Check Console tab for unrelated JavaScript errors
 
 ### Blockers don't seem to work
@@ -171,7 +179,8 @@ The blockers should only block LMS communication, not content. If content fails 
 
 ### Requests still getting through
 
-Some patterns may not be covered. Check the Network tab for the specific URLs and consider:
+Some patterns may not be covered. Check the Network tab for the specific URLs
+and consider:
 
 - Opening an issue on the [GitHub repo](https://github.com/mobilemind/moat-lms-blocker/issues)
 - Adding custom rules in uBlock Origin's "My filters" tab

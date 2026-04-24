@@ -43,13 +43,13 @@ https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-
 
 For Adblock Plus users, click to subscribe:
 
-| Filter List | Description | Subscribe |
-|-------------|-------------|-----------|
-| **SCORM 1.2** | Blocks SCORM 1.2 runtime communications | [Subscribe](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-scorm12.txt&title=Moat%20SCORM%201.2%20Blocker) |
-| **SCORM 2004** | Blocks SCORM 2004 runtime communications | [Subscribe](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-scorm2004.txt&title=Moat%20SCORM%202004%20Blocker) |
-| **xAPI** | Blocks Experience API (Tin Can) communications | [Subscribe](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-xapi.txt&title=Moat%20xAPI%20Blocker) |
-| **cmi5** | Blocks cmi5 launch parameters and communications | [Subscribe](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-cmi5.txt&title=Moat%20cmi5%20Blocker) |
-| **AICC** | Blocks AICC/HACP protocol communications | [Subscribe](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-aicc.txt&title=Moat%20AICC%20Blocker) |
+| Filter List | Description                                     | Subscribe |
+| ----------- | ----------------------------------------------- | --------- |
+| SCORM 1.2   | Blocks SCORM 1.2 runtime communication          | [Subscribe](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-scorm12.txt&title=Moat%20SCORM%201.2%20Blocker) |
+| SCORM 2004  | Blocks SCORM 2004 runtime communication         | [Subscribe](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-scorm2004.txt&title=Moat%20SCORM%202004%20Blocker) |
+| xAPI        | Blocks Experience API (Tin Can) communication   | [Subscribe](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-xapi.txt&title=Moat%20xAPI%20Blocker) |
+| cmi5        | Blocks cmi5 launch parameters and communication | [Subscribe](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-cmi5.txt&title=Moat%20cmi5%20Blocker) |
+| AICC        | Blocks AICC HACP communication                  | [Subscribe](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/mobilemind/moat-lms-blocker/main/filters/moat-aicc.txt&title=Moat%20AICC%20Blocker) |
 
 ## Toggling Filter Lists
 
@@ -59,13 +59,13 @@ toggling.
 
 ## Browser Compatibility
 
-| Browser | Support |
-|---------|---------|
-| **Firefox** | Full support |
-| **Edge** | Full support |
-| **Chrome** | Limited (use [uBlock Origin Lite](https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh)) |
-| **Brave** | Full support |
-| **Opera** | Full support |
+| Browser | Support      |
+| ------- | ------------ |
+| Brave   | Full support |
+| Chrome  | Limited (use [uBlock Origin Lite](https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh)) |
+| Edge    | Full support |
+| Firefox | Full support |
+| Opera   | Full support |
 
 Note: Chrome's Manifest V3 restrictions limit uBlock Origin functionality.
 Firefox and Edge provide the best experience.
@@ -96,7 +96,6 @@ Firefox and Edge provide the best experience.
 ### AICC
 
 - HACP protocol commands (getparam, putparam, exitau, etc.)
-- AICC communication files
 
 ## Testing & Debugging
 
@@ -109,12 +108,12 @@ See [TESTING.md](TESTING.md) for:
 
 ## Contributing
 
-Found a pattern that should be blocked? See [CONTRIBUTING.md](CONTRIBUTING.md) for
-guidelines on reporting issues and submitting pull requests.
+Found a pattern that should be blocked? See [CONTRIBUTING.md](CONTRIBUTING.md)
+for guidelines on reporting issues and submitting pull requests.
 
-Filter lists are validated using [AGLint](https://github.com/AdguardTeam/AGLint), a
-universal adblock filter list linter that checks for syntax errors and validates
-uBlock Origin filter syntax.
+Filter lists are validated using [AGLint](https://github.com/AdguardTeam/AGLint),
+a universal adblock filter list linter that checks for syntax errors and
+validates uBlock Origin filter syntax.
 
 ## License
 
