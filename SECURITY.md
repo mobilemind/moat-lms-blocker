@@ -4,8 +4,8 @@
 
 We release patches for security vulnerabilities in the following versions:
 
-| Version | Supported          |
-| ------- | ------------------ |
+| Version | Supported           |
+| ------- | ------------------- |
 | latest  | : white_check_mark: |
 
 ## Reporting a Vulnerability
@@ -23,7 +23,8 @@ Please include:
 - Potential impact
 - Suggested fix (if any)
 
-We will respond to security reports within 48 hours and will keep you updated on the progress toward a fix.
+We will respond to security reports within 48 hours and will keep you updated
+on the progress toward a fix.
 
 ## Security Best Practices for Contributors
 
