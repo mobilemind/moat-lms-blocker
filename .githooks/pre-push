@@ -1,0 +1,105 @@
+#!/bin/sh
+#
+# pre-push: run project linters before allowing a push.
+#
+# Order:
+#   1. aglint           (filter lists)            via npm run lint:filters
+#   2. prettier --check (JSON)                    via npm run lint:json
+#   3. prettier --check (YAML)                    via npm run lint:yaml
+#   4. markdownlint-cli2 (Markdown)               via npm run lint:markdown
+#   5. actionlint       (GitHub Actions workflows)
+#   6. shellcheck       (tracked shell scripts)
+#
+# Each linter is optional:
+#   - If a tool is missing (node_modules absent, or actionlint/shellcheck
+#     not on PATH) the check is skipped with a warning; the push proceeds.
+#   - If a tool is present and reports errors, the push is blocked.
+#
+# All checks run on every invocation so failures are reported together.
+# Bypass entirely with `git push --no-verify` if you must.
+
+set -u
+
+repo_root=$(git rev-parse --show-toplevel) || exit 1
+cd "$repo_root" || exit 1
+
+if [ -t 2 ] && command -v tput >/dev/null 2>&1 && [ -n "${TERM-}" ] && [ "${TERM-}" != "dumb" ]; then
+    c_red=$(tput setaf 1)
+    c_green=$(tput setaf 2)
+    c_yellow=$(tput setaf 3)
+    c_reset=$(tput sgr0)
+else
+    c_red=
+    c_green=
+    c_yellow=
+    c_reset=
+fi
+
+log() {
+    # $1 = color, $2 = tag, $3 = message
+    printf '%spre-push %s:%s %s\n' "$1" "$2" "$c_reset" "$3" >&2
+}
+
+status=0
+
+# Run an `npm run` script and log a one-line OK/FAIL summary. The script's
+# own output is left to flow to stderr so failures are immediately readable.
+run_npm_check() {
+    # $1 = npm script name, $2 = friendly label for the summary line
+    if npm run --silent "$1" >&2; then
+        log "$c_green" "OK  " "$2 passed"
+    else
+        log "$c_red" "FAIL" "$2 reported errors"
+        status=1
+    fi
+}
+
+# --- npm-driven linters -----------------------------------------------------
+if [ ! -d node_modules ]; then
+    log "$c_yellow" "WARN" \
+        "node_modules missing; skipping npm linters (run: npm install)"
+else
+    run_npm_check lint:filters  "aglint (filters)"
+    run_npm_check lint:json     "prettier (JSON)"
+    run_npm_check lint:yaml     "prettier (YAML)"
+    run_npm_check lint:markdown "markdownlint (Markdown)"
+fi
+
+# --- actionlint: GitHub Actions workflows -----------------------------------
+if [ -d .github/workflows ]; then
+    if command -v actionlint >/dev/null 2>&1; then
+        if actionlint >&2; then
+            log "$c_green" "OK  " "actionlint passed"
+        else
+            log "$c_red" "FAIL" "actionlint reported errors"
+            status=1
+        fi
+    else
+        log "$c_yellow" "WARN" \
+            "actionlint not installed; skipping (brew install actionlint)"
+    fi
+fi
+
+# --- shellcheck: tracked shell scripts --------------------------------------
+if command -v shellcheck >/dev/null 2>&1; then
+    scripts=$(git ls-files '*.sh' '.githooks/*' 2>/dev/null || true)
+    if [ -n "$scripts" ]; then
+        # Word splitting on $scripts is intentional: tracked paths in this
+        # repo do not contain whitespace.
+        # shellcheck disable=SC2086
+        if shellcheck -s sh $scripts >&2; then
+            log "$c_green" "OK  " "shellcheck passed"
+        else
+            log "$c_red" "FAIL" "shellcheck reported errors"
+            status=1
+        fi
+    else
+        log "$c_yellow" "SKIP" \
+            "shellcheck: no tracked shell scripts to check"
+    fi
+else
+    log "$c_yellow" "WARN" \
+        "shellcheck not installed; skipping (brew install shellcheck)"
+fi
+
+exit "$status"

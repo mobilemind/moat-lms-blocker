@@ -69,7 +69,9 @@ jobs:
               IFS=$'\t' read -r DATE TAG URL <<< "$DATA"
               if [ -n "$DATE" ] && [ -n "$TAG" ] && [ -n "$URL" ] && [ "$DATE" \> "$THRESHOLD" ]; then
                 SHORT="${DATE%T*}"
-                printf '- `%s %s` released %s - [release notes](%s)\n' \
+                # Backticks in the printf format are literal markdown.
+                # shellcheck disable=SC2016
+                printf -- '- `%s %s` released %s - [release notes](%s)\n' \
                   "$REPO" "$TAG" "$SHORT" "$URL" \
                   >> /tmp/release_items.txt
               fi
@@ -84,7 +86,9 @@ jobs:
               if [ -n "$ISO" ] && [ "$ISO" \> "$THRESHOLD" ]; then
                 LATEST=$(npm view "$PKG" dist-tags.latest 2>/dev/null) || LATEST="?"
                 SHORT="${ISO%T*}"
-                printf '- `%s@%s` last modified %s on npm\n' \
+                # Backticks in the printf format are literal markdown.
+                # shellcheck disable=SC2016
+                printf -- '- `%s@%s` last modified %s on npm\n' \
                   "$PKG" "$LATEST" "$SHORT" \
                   >> /tmp/npm_items.txt
               fi
@@ -98,7 +102,9 @@ jobs:
               "repos/$SPEC_REPO/commits?since=$SINCE&per_page=1" \
               --jq 'length' 2>/dev/null) || SPEC_COUNT=0
             if [ "$SPEC_COUNT" -gt 0 ]; then
-              printf '- `%s` had commits in the past 35 days\n' \
+              # Backticks in the printf format are literal markdown.
+              # shellcheck disable=SC2016
+              printf -- '- `%s` had commits in the past 35 days\n' \
                 "$SPEC_REPO" >> /tmp/activity_items.txt
             fi
           done
@@ -108,7 +114,9 @@ jobs:
             --jq '[.[] | .commit.message | select(test("(?i)(scorm|xapi|lms|lrs|cmi5|aicc|elearn)"))] | length' \
             2>/dev/null) || UBO_COUNT=0
           if [ "$UBO_COUNT" -gt 0 ]; then
-            printf '- `uBlockOrigin/uAssets` had %s commit(s) mentioning eLearning terms\n' \
+            # Backticks in the printf format are literal markdown.
+            # shellcheck disable=SC2016
+            printf -- '- `uBlockOrigin/uAssets` had %s commit(s) mentioning eLearning terms\n' \
               "$UBO_COUNT" >> /tmp/activity_items.txt
           fi
 
@@ -137,16 +145,16 @@ jobs:
           fi
 
           if [ "$HAS_FINDINGS" = "true" ]; then
-            printf '\n### Suggested Actions\n\n' >> /tmp/issue_body.txt
-            printf '- Review changelogs for new script filenames, API endpoints, or URL patterns\n' \
-              >> /tmp/issue_body.txt
-            printf '- Check if new spec versions introduce new endpoint paths\n' \
-              >> /tmp/issue_body.txt
-            printf '- Run `npm run lint:filters` after any filter changes\n' \
-              >> /tmp/issue_body.txt
-            printf '- Update `! Last modified:` dates in changed filter files\n' \
-              >> /tmp/issue_body.txt
-            printf '\n/cc @mobilemind\n' >> /tmp/issue_body.txt
+            # Backticks in the printf formats below are literal markdown.
+            # shellcheck disable=SC2016
+            {
+              printf '\n### Suggested Actions\n\n'
+              printf -- '- Review changelogs for new script filenames, API endpoints, or URL patterns\n'
+              printf -- '- Check if new spec versions introduce new endpoint paths\n'
+              printf -- '- Run `npm run lint:filters` after any filter changes\n'
+              printf -- '- Update `! Last modified:` dates in changed filter files\n'
+              printf '\n/cc @mobilemind\n'
+            } >> /tmp/issue_body.txt
           fi
 
           echo "has_findings=$HAS_FINDINGS" >> "$GITHUB_OUTPUT"
