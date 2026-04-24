@@ -33,11 +33,11 @@
 ! Rustici Driver Config File (Rise 360 AICC exports)
 /driverOptions\.js$script,1p
 
-! scorm-again Open-Source AICC Runtime (AICC removed in v3.0.0; v2.x bundles only)
+! scorm-again Open-Source AICC Runtime (v2.x only — AICC removed in v3.0.0)
+! Combined scorm-again.js is NOT listed here: v3+ ships it as SCORM-only,
+! and v2.x AICC traffic is blocked by the HACP rules above.
 /aicc\.js$script,1p
 /aicc\.min\.js$script,1p
-/scorm-again\.js$script,1p
-/scorm-again\.min\.js$script,1p
 
 ! LMS Communication Documents
 /lms\/blank\.html$document,1p
