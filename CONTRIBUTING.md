@@ -105,6 +105,39 @@ The linter checks all `.txt` files in the `filters/` directory for:
 
 All filter files must pass linting before being merged.
 
+### Git Hooks (Optional)
+
+The repo ships a `pre-push` hook in `.githooks/` that runs the project
+linters before each `git push`, in this order:
+
+1. `aglint` on filter lists (`npm run lint:filters`)
+2. `prettier --check` on JSON (`npm run lint:json`)
+3. `prettier --check` on YAML (`npm run lint:yaml`)
+4. `markdownlint-cli2` on Markdown (`npm run lint:markdown`)
+5. [`actionlint`](https://github.com/rhysd/actionlint) on GitHub Actions
+   workflows
+6. [`shellcheck`](https://www.shellcheck.net/) on tracked shell scripts
+
+Each tool is optional: if it is missing (no `node_modules`, or
+`actionlint`/`shellcheck` not on `PATH`) the check is skipped with a
+warning. If a tool is present and reports errors, the push is blocked.
+All checks run on every invocation so failures are reported together.
+
+To opt in, point Git at the hooks directory once per clone:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+Install dependencies and the standalone linters:
+
+```bash
+npm install
+brew install actionlint shellcheck   # macOS / Homebrew
+```
+
+Bypass the hook for a single push with `git push --no-verify`.
+
 ## Code of Conduct
 
 Please be respectful and constructive.  We're all here to build something great together.
