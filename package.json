@@ -10,7 +10,7 @@
   "description": "Filter lists for uBlock Origin that block communications between eLearning content and Learning Management Systems (LMS) or Learning Record Stores (LRS).",
   "devDependencies": {
     "@adguard/aglint": "~3.0.2",
-    "markdownlint-cli2": "~0.23.0",
+    "markdownlint-cli2": "~0.23.1",
     "prettier": "~3.9.5"
   },
   "engines": {
