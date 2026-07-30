@@ -10,12 +10,12 @@
   "description": "Filter lists for uBlock Origin that block communications between eLearning content and Learning Management Systems (LMS) or Learning Record Stores (LRS).",
   "devDependencies": {
     "@adguard/aglint": "~3.0.2",
-    "markdownlint-cli2": "~0.23.1",
+    "markdownlint-cli2": "~0.23.2",
     "prettier": "~3.9.6"
   },
   "engines": {
-    "node": ">=24.14.0",
-    "npm": ">=11.9.0"
+    "node": ">=24.16.0",
+    "npm": ">=11.13.0"
   },
   "homepage": "https://github.com/mobilemind/moat-lms-blocker#readme",
   "keywords": [
