@@ -28,7 +28,7 @@ AGLint validates:
 All filter files must pass linting. The linter runs automatically on pull
 requests via GitHub Actions.
 
-**Note:** Node.js 24 or higher is required (minimum 22 required by AGLint's
+**Note:** Node.js 26 or higher is required (minimum 22 required by AGLint's
 dependencies).
 
 ## Quick Verification
